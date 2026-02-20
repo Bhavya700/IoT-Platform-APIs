@@ -7,19 +7,19 @@
 ![InfluxDB](https://img.shields.io/badge/InfluxDB-22ADF6?style=flat&logo=influxdb&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
 
-## 📌 Project Overview
+## Project Overview
 The **IoT Platform API** is a high-performance **Spring Boot** application architected to act as a scalable data ingestion and reporting service for IoT devices, primarily temperature sensors. 
 
 By leveraging **Apache Kafka** for decoupled event-streaming and **InfluxDB** for optimized time-series data storage, this platform successfully manages real-time telemetry pipelines and aggregates data seamlessly, ensuring zero dropping under heavy data payload scenarios.
 
-## 🚀 Key Features
+## Key Features
 *   **High-Throughput Ingestion**: Exposes HTTP REST endpoints capable of consuming both individual data points and bulk sensor readings efficiently.
 *   **Asynchronous Event Streaming**: Buffers incoming readings via an **Apache Kafka** producer/consumer architectural pattern, maximizing resilience and avoiding synchronous database bottlenecks.
 *   **Time-Series Optimization**: Writes streams to **InfluxDB**, utilizing sequential time-range optimizations that make metric lookups and aggregations lightning fast.
 *   **Real-time Reporting API**: Allows for customized, time-bounded data retrieval so frontend clients and dashboards can reliably reconstruct sensor history and visualize trends.
 *   **Ready-to-Deploy**: Fully integrated with **Docker & Docker Compose** for streamlined bootstrapping of messaging and storage infrastructure alongside the core backend.
 
-## ⚙️ Architecture Workflow
+## Architecture Workflow
 1. **Data Ingestion**: A sensor emits `.json` payloads securely via REST (`POST /temperatures`).
 2. **Streaming**: The controller immediately wraps the payload and publishes it asynchronously to an Apache Kafka topic, quickly freeing up the HTTP thread.
 3. **Persistence**: A Kafka Consumer seamlessly pulls the payload in the background, mapping it cleanly to an InfluxDB `Point` and persisting it in structural time-series order.
@@ -27,7 +27,7 @@ By leveraging **Apache Kafka** for decoupled event-streaming and **InfluxDB** fo
 
 <br/>
 
-## 🛠️ Tech Stack
+## Tech Stack
 *   **Frameworks & Languages:** Java 8+, Spring Boot, Maven
 *   **Message Broker:** Apache Kafka, ZooKeeper
 *   **Database:** InfluxDB
@@ -35,7 +35,7 @@ By leveraging **Apache Kafka** for decoupled event-streaming and **InfluxDB** fo
 
 ---
 
-## 💻 Local Setup & Execution
+## Local Setup & Execution
 
 ### Prerequisites
 - **JDK 1.8+** (Tested with Oracle JDK)
@@ -62,7 +62,7 @@ The application will start on `localhost:8080`.
 
 ---
 
-## 📡 API Endpoints & Usage
+## API Endpoints & Usage
 
 ### 1. Record Single Temperature Reading
 **Request:**
@@ -113,7 +113,7 @@ curl -X GET 'http://localhost:8080/temperatures?startTime=1563142700&endTime=156
 
 ---
 
-## 🧪 Testing
+## Testing
 
 The repository incorporates robust unit and integration testing workflows:
 
@@ -140,10 +140,10 @@ mvn org.pitest:pitest-maven:mutationCoverage
 
 ---
 
-## 📝 Future Technical Improvements
+## Future Technical Improvements
 * Expand authentication pipelines natively utilizing JWT / OAuth2 standards rather than mocked credentials.
 * Adopt MQTT protocol streaming integrations for lighter data transfer overhead dynamically bridged to Kafka.
 * Further enrich the internal CI/CD pipelines to build/publish modular lightweight Docker images sequentially.
 
-## 📄 License
+## License
 Licensed under the [MIT License](LICENSE).
